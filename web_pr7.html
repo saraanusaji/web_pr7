@@ -1,0 +1,270 @@
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Second-Hand Book Store</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial;
+            background: white;
+        }
+
+        .box {
+            width: 900px;
+            max-width: 95%;
+            margin: 20px auto;
+            padding: 15px;
+        }
+
+        h2 {
+            background: #568D8F;
+            color: white;
+            padding: 12px;
+        }
+
+        .books {
+            display: flex;
+            justify-content: space-around;
+            gap: 15px;
+        }
+
+        .book {
+            width: 24%;
+        }
+
+        /* CSS book covers */
+        .cover {
+            height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 6px double rgba(0, 0, 0, 0.35);
+            box-shadow: 3px 4px 6px #ccc;
+            font-weight: bold;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        .cover .symbol {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .cover .title {
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+
+        .story {
+            background: #F1DDAE;
+            color: #62482B;
+        }
+
+        .novel {
+            background: #B8D0E0;
+            color: #24435D;
+        }
+
+        .comic {
+            background: #DFC6E8;
+            color: #57336A;
+        }
+
+        .textbook {
+            background: #E8CDBB;
+            color: #704333;
+        }
+
+        .book p {
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        h3 {
+            color: #2878D0;
+        }
+
+        .order {
+            text-align: left;
+            width: 90%;
+            margin: auto;
+        }
+
+        .order label {
+            display: block;
+            color: #2878D0;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 45%;
+            padding: 10px;
+            margin: 15px auto;
+            display: block;
+            background: #2878D0;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #185AA5;
+        }
+
+        hr {
+            border: 1px solid #AAAAFF;
+        }
+
+        .total {
+            background: #38A34A;
+            color: white;
+            padding: 10px;
+            font-weight: bold;
+            display: inline-block;
+            width: 40%;
+        }
+
+        #price {
+            color: #B22222;
+            font-size: 20px;
+            font-weight: bold;
+            margin-left: 15px;
+        }
+
+        @media (max-width: 600px) {
+            .books {
+                flex-wrap: wrap;
+            }
+
+            .book {
+                width: 45%;
+            }
+        }
+    </style>
+
+    <script>
+        $(document).ready(function() {
+
+            $("#btn").click(function() {
+
+                let q1 = Number($("#q1").val());
+                let q2 = Number($("#q2").val());
+                let q3 = Number($("#q3").val());
+                let q4 = Number($("#q4").val());
+
+                if (
+                    $("#q1").val() === "" ||
+                    $("#q2").val() === "" ||
+                    $("#q3").val() === "" ||
+                    $("#q4").val() === "" ||
+                    !Number.isInteger(q1) ||
+                    !Number.isInteger(q2) ||
+                    !Number.isInteger(q3) ||
+                    !Number.isInteger(q4) ||
+                    q1 < 0 || q2 < 0 || q3 < 0 || q4 < 0
+                ) {
+                    alert("Please enter valid quantities.");
+                    return;
+                }
+
+                let total = (q1 * 100) +
+                            (q2 * 150) +
+                            (q3 * 120) +
+                            (q4 * 180);
+
+                $("#price").text("Rs." + total);
+            });
+
+        });
+    </script>
+</head>
+
+<body>
+
+<div class="box">
+
+    <h2>SECOND-HAND BOOK STORE</h2>
+
+    <div class="books">
+
+        <div class="book">
+            <div class="cover story">
+                <div class="symbol">◉</div>
+                <div class="title">Story Book</div>
+            </div>
+            <p>Story Book - Rs.100</p>
+        </div>
+
+        <div class="book">
+            <div class="cover novel">
+                <div class="symbol">◉</div>
+                <div class="title">Novel</div>
+            </div>
+            <p>Novel - Rs.150</p>
+        </div>
+
+        <div class="book">
+            <div class="cover comic">
+                <div class="symbol">◉</div>
+                <div class="title">Comic Book</div>
+            </div>
+            <p>Comic Book - Rs.120</p>
+        </div>
+
+        <div class="book">
+            <div class="cover textbook">
+                <div class="symbol">◉</div>
+                <div class="title">Textbook</div>
+            </div>
+            <p>Textbook - Rs.180</p>
+        </div>
+
+    </div>
+
+    <h3>Order Books</h3>
+
+    <div class="order">
+
+        <label>Story Book (Quantity)</label>
+        <input type="number" id="q1" value="2" min="0" step="1">
+
+        <label>Novel (Quantity)</label>
+        <input type="number" id="q2" value="1" min="0" step="1">
+
+        <label>Comic Book (Quantity)</label>
+        <input type="number" id="q3" value="2" min="0" step="1">
+
+        <label>Textbook (Quantity)</label>
+        <input type="number" id="q4" value="1" min="0" step="1">
+
+        <button id="btn" type="button">Place Order</button>
+
+    </div>
+
+    <hr>
+
+    <h3 style="color: #38A34A;">
+        Purchase Order Bill!!
+    </h3>
+
+    <span class="total">Total Price</span>
+    <span id="price">Rs.0</span>
+
+</div>
+
+</body>
+</html>
+```
